@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'detailscreen.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _controller = TextEditingController();
   List<dynamic> _recipes = [];
 
-  // Fetch recipes from Spoonacular API
+ 
   Future<void> _fetchRecipes() async {
     final String apiKey = '930f4b1df76f4e988765a6976a3fc096'; 
     final String ingredients = _controller.text;
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _recipes = recipeList;
       });
     } else {
-      
+    
       setState(() {
         _recipes = [];
       });
@@ -75,13 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: 16.0),
-            
+           
             ElevatedButton(
               onPressed: _fetchRecipes,
               child: const Text('Find Recipes'),
             ),
             const SizedBox(height: 16.0),
-           
+        
             Expanded(
               child: ListView.builder(
                 itemCount: _recipes.length,
@@ -98,6 +99,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       title: Text(recipe['title']),
                       subtitle: Text('Ready in ${recipe['readyInMinutes']} mins'),
+                      onTap: () {
+                       
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => detailscreen(
+                              recipeId: recipe['id'],
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
