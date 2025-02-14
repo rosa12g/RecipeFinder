@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Welcome Page
+
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
@@ -34,12 +34,12 @@ class WelcomePage extends StatelessWidget {
         children: [
           Image.asset('assets/icon/welcomeP.jpg', fit: BoxFit.cover),
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              const Spacer(), // Pushes the text to the center
               const Padding(
-                padding: EdgeInsets.only(top: 100.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text(
-                  'Welcome to Our App!',
+                  'You don\'t have to know all food  names',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -55,6 +55,7 @@ class WelcomePage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
+              const Spacer(), 
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
                 child: ElevatedButton.icon(
@@ -82,6 +83,7 @@ class WelcomePage extends StatelessWidget {
     );
   }
 }
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
